@@ -28,6 +28,8 @@ class ResourcesInheritanceTest extends Tester\TestCase
 	protected function createContainer()
 	{
 		$config = new Nette\Configurator();
+		$config->enableDebugger();
+        error_reporting(~E_USER_DEPRECATED);
 		$config->setTempDirectory(TEMP_DIR);
 		$config->addConfig(__DIR__ . '/../config/application.neon', $config::NONE);
 		$config->addConfig(__DIR__ . '/../config/providers.neon', $config::NONE);

@@ -60,6 +60,8 @@ class AccessTest extends Tester\TestCase
 	protected function createContainer()
 	{
 		$config = new Nette\Configurator();
+        $config->enableDebugger();
+        error_reporting(~E_USER_DEPRECATED);
 		$config->setTempDirectory(TEMP_DIR);
 		$config->addConfig(__DIR__ . '/../config/application.neon', $config::NONE);
 		$config->addConfig(__DIR__ . '/../config/presenters.neon', $config::NONE);
@@ -132,7 +134,7 @@ class AccessTest extends Tester\TestCase
 		$this->user->login($username, $password);
 
 		// Create GET request
-		$request = new Application\Request('Test', 'GET', array('action' => 'allowed'));
+		$request = new Application\Request('Test', 'GET', ['action' => 'allowed']);
 		// & fire presenter & catch response
 		$response = $presenter->run($request);
 
@@ -159,7 +161,7 @@ class AccessTest extends Tester\TestCase
 		$this->user->login($username, $password);
 
 		// Create GET request
-		$request = new Application\Request('Test', 'GET', array('action' => 'allowedRole'));
+		$request = new Application\Request('Test', 'GET', ['action' => 'allowedRole']);
 		// & fire presenter & catch response
 		$response = $presenter->run($request);
 

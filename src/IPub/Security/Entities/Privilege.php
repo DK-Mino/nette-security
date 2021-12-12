@@ -39,6 +39,7 @@ class Privilege implements IPrivilege
         $this->value = (string) $value;
         $this->name = $name;
         $this->permission = $permission;
+        $this->permission->setNewPrivilege($this);
     }
 
 
